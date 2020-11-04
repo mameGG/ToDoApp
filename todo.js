@@ -1,33 +1,37 @@
 'use strict';
 
-const addTaskTrigger = document.getElementsByClassName('js-addTask-trigger')[0];
-const addTaskTarget = document.getElementsByClassName('js-addTask-target')[0];
-const addTaskValue = document.getElementsByClassName('js-addTask-value')[0];
+const addTaskTrigger = document.getElementsByClassName('js-addTask-trigger')[0]; //addTaskTriggerでjs-addTask-triggerの一番目を取得、グローバルスコープ？
+const addTaskTarget = document.getElementsByClassName('js-addTask-target')[0]; //同上
+const addTaskValue = document.getElementsByClassName('js-addTask-value')[0]; //同上
 
-const removeTask = removeButton => {
-  const targetTask = removeButton.closest('li');
-  addTaskTarget.removeChild(targetTask);
+const removeTask = removeButton => { //関数removeTaskを定義、仮引数removeButton
+  const targetTask = removeButton.closest('li'); //targetTaskを呼ぶとremoveButtonの最も近いli要素を返す
+  addTaskTarget.removeChild(targetTask); //targetTask=削除ボタンに最も近いli要素を削除
 };
 
-const addTask = task => {
-  const listItem = document.createElement('li');
-  const removeButton = document.createElement('button');
-  const complateButton = document.createElement('button');
+const addTask = task => { //関数addTask、仮引数task
+  const listItem = document.createElement('li'); //listItemはli要素を作る
+  const removeButton = document.createElement('button'); //removeButtonはbutton要素を作る
+  const completeButton = document.createElement('button'); //completeButtonはbutton要素を作る
 
-	removeButton.innerText = '削除';
-  removeButton.addEventListener('click', () => removeTask(removeButton));
+	removeButton.innerText = '削除'; //removeButtonの中のテキストを削除に書き換える
+  removeButton.addEventListener('click', () => removeTask(removeButton)); //removeButtonをクリックした時、removeTask(removeButton)の処理を行う＝削除ボタンに最も近いli要素を消す
 
-  complateButton.innerText = '完了';
-  complateButton.addEventListener('click', () => complateTask(complateButton));
+  completeButton.innerText = '完了'; //completeButtonの中のテキストを完了に書き換える
+  completeButton.addEventListener('click', () => complateTask(completeButton)); //completeButtonをクリックした時、completeTask(completeButton)の処理を行う＝・・・・
 
-  listItem.innerText = task;
+  listItem.innerText = task; //listItemの中のテキストをtask(変数？＝addTaskValue.value)に書き換える=テキストタイプに入力された値を代入
   
-  listItem.append(removeButton);
-  addTaskTarget.appendChild(listItem);
+  listItem.append(removeButton); //listitemのお尻にremoveButtonを追加
+  listItem.append(completeButton); //     〃    にcompleteButtonを追加
+  addTaskTarget.appendChild(listItem); //addTaskTargetのお尻にlistitemを追加（li要素と上記２つのボタンの３要素）
+  //appendは、
+  //DOMだけではなくテキストノードも追加できる（Stringを渡すとテキストノードとして最後尾に追加される）
+  //引数を複数渡せる（兄弟要素として追加される）
+  //戻り値がない
 
-  listItem.append(complateButton);
-  listItem.append(removeButton);
-  addTaskTarget.appendChild(listItem);
+  // listItem.append(removeButton);
+  // addTaskTarget.appendChild(listItem);
 };
 
 addTaskTrigger.addEventListener('click', event => {
@@ -36,9 +40,11 @@ addTaskTrigger.addEventListener('click', event => {
   addTaskValue.value = '';
 });
 
-const complateTask = complateButton => {
-  const targetTask = complateButton.closest('li');
+const complateTask = completeButton => {
+  const targetTask = completeButton.closest('li');
   targetTask.classList.add('isComplate');
-  targetTask.removeChild(complateButton);
+  targetTask.removeChild(completeButton);
 };
+
+
 
