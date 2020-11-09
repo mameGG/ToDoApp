@@ -34,10 +34,10 @@ const addTask = task => { //関数addTask、仮引数task
   // addTaskTarget.appendChild(listItem);
 };
 
-addTaskTrigger.addEventListener('click', event => {
-  const task = addTaskValue.value;
-  addTask(task);
-  addTaskValue.value = '';
+addTaskTrigger.addEventListener('click', event => { //addTaskTriggerをクリックした時に以下の処理をする(=タスク登録ボタンをクリックした時)
+  const task = addTaskValue.value;  //task=addTaskValueに入力されたテキスト
+  addTask(task);  //引数taskにaddTaskValue.valueを渡しながら関数addtaskの処理を行う=ボタン要素作成したりテキストを書き換えたりする
+  addTaskValue.value = '';  //空白？を最後に代入することでリセットし、タスク登録ボタンをクリックする毎に新しく値を入力しやすくする
 });
 
 const complateTask = completeButton => {
