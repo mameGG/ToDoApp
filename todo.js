@@ -18,7 +18,7 @@ const addTask = task => { //関数addTask、仮引数task
   removeButton.addEventListener('click', () => removeTask(removeButton)); //removeButtonをクリックした時、removeTask(removeButton)の処理を行う＝削除ボタンに最も近いli要素を消す
 
   completeButton.innerText = '完了'; //completeButtonの中のテキストを完了に書き換える
-  completeButton.addEventListener('click', () => complateTask(completeButton)); //completeButtonをクリックした時、completeTask(completeButton)の処理を行う＝・・・・
+  completeButton.addEventListener('click', () => completeTask(completeButton)); //completeButtonをクリックした時、completeTask(completeButton)の処理を行う＝・・・・
 
   listItem.innerText = task; //listItemの中のテキストをtask(変数？＝addTaskValue.value)に書き換える=テキストタイプに入力された値を代入
   
@@ -40,10 +40,10 @@ addTaskTrigger.addEventListener('click', event => { //addTaskTriggerをクリッ
   addTaskValue.value = '';  //空白？を最後に代入することでリセットし、タスク登録ボタンをクリックする毎に新しく値を入力しやすくする
 });
 
-const complateTask = completeButton => {
-  const targetTask = completeButton.closest('li');
-  targetTask.classList.add('isComplate');
-  targetTask.removeChild(completeButton);
+const completeTask = completeButton => { //関数completeTask、引数completeButton
+  const targetTask = completeButton.closest('li'); //targetTaskでcomleteButtonに最も近いli要素を返す
+  targetTask.classList.add('isComplate'); //targetTask=完了ボタンに最も近いli要素に"isComplete"クラスを付与する
+  targetTask.removeChild(completeButton);  //targetTaskの子要素のcompleteButtonを削除
 };
 
 
